@@ -1,0 +1,87 @@
+"Home_JuegoDeRoles As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_1 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_1 As label:
+        Height: =88
+        Size: =27
+        Text: ="Juego de Roles"
+        Width: =290
+        X: =25
+        ZIndex: =2
+
+    Canvas2_1 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_1.Y + RectQuickActionBar1_1.Height
+        ZIndex: =3
+
+        DataCard2_1 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image4_7 As image:
+                Height: =80
+                Image: ='icono-juego'
+                OnSelect: =Navigate(Home_Niño,ScreenTransition.Cover)
+                Width: =80
+                X: =282
+                Y: =968
+                ZIndex: =6
+
+            Label4 As label:
+                Font: =Font.'Patrick Hand'
+                FontWeight: =FontWeight.Bold
+                Height: =80
+                Size: =30
+                Text: ="Bienvenido al Juego de Roles"
+                Width: =441
+                X: =100
+                Y: =89
+                ZIndex: =7
+
+            Label4_1 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                Color: =RGBA(166, 166, 166, 1)
+                Font: =Font.'Patrick Hand'
+                Height: =523
+                Size: =30
+                Text: |-
+                    ="Se mostrarán 5 situaciones de la vida real con 4 
+                    opciones a marcar donde
+                    deberás tomar la mejor decisión según tu rol de niño
+                    para pasar al siguiente nivel y ganar el juego"
+                Width: =568
+                X: =37
+                Y: =249
+                ZIndex: =8
+
+            Button3_3 As button:
+                DisplayMode: =Edit
+                Fill: =RGBA(94, 90, 90, 1)
+                Font: =Font.'Patrick Hand'
+                Height: =115
+                HoverFill: =RGBA(94, 90, 90, 1)
+                OnSelect: |-
+                    =Patch(IntentosJuego,Defaults(IntentosJuego),{EmailPaciente:User().Email,NombreUsuario:User().FullName,EmailEspecialista:EmailEspecialistaParaSeriousGames});Navigate(JuegoDeRoles_Pregunta1,ScreenTransition.Cover,{Nivel:1});Set(popup,false);Set(Respuesta,"Ninguna");Refresh(IntentosJuego)
+                Size: =30
+                Text: ="Iniciar Juego"
+                Width: =188
+                X: =228
+                Y: =708
+                ZIndex: =9
+

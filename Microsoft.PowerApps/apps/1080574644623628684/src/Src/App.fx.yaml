@@ -1,0 +1,22 @@
+App As appinfo:
+    BackEnabled: =false
+    OnStart: |-
+        =Refresh(Usuario);
+        Set(
+            UsuarioRol,
+            LookUp(
+            Usuario,
+            Email=User().Email,
+            Rol
+            )
+        );
+        Set(
+        EspecialistaCorreoEncuesta,
+        LookUp(
+        AsignacionUsuario,
+        EmailPaciente=User().Email,
+        EmailEspecialista
+        )
+        )
+    StartScreen: =
+

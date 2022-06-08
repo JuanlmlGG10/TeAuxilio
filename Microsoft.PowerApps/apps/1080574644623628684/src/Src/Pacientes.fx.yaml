@@ -1,0 +1,174 @@
+"Pacientes As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_10 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_11 As label:
+        Height: =88
+        Size: =27
+        Text: ="Pacientes"
+        Width: =290
+        X: =76
+        ZIndex: =2
+
+    Canvas2_10 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_10.Y + RectQuickActionBar1_10.Height
+        ZIndex: =3
+
+        DataCard2_10 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_8 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_11 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_8 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_11 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_9 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            "GalleryPacientes As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                Height: =968
+                Items: =Filter(AsignacionUsuario,User().Email=EmailEspecialista)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =180
+                ZIndex: =6
+
+                Title12_1 As label:
+                    Height: =32
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =LookUp(Usuario,ThisItem.EmailPaciente=Email,Nombres&" "&Apellidos)
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =491
+                    X: =16
+                    Y: =14
+                    ZIndex: =1
+
+                Subtitle9_1 As label:
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: ="Asignada el "&ThisItem.Modified
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =400
+                    X: =16
+                    Y: =55
+                    ZIndex: =2
+
+                Separator10_1 As rectangle:
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =4
+
+                Button3_8 As button:
+                    DisplayMode: =Edit
+                    Fill: =RGBA(94, 90, 90, 1)
+                    Font: =Font.'Patrick Hand'
+                    Height: =47
+                    HoverFill: =RGBA(94, 90, 90, 1)
+                    OnSelect: |-
+                        =Navigate(PacienteAsignadoPerfil,ScreenTransition.Cover,{PacienteCorreo:ThisItem.EmailPaciente})
+                    Size: =25
+                    Text: ="Ver Datos"
+                    Width: =154
+                    X: =120
+                    Y: =110
+                    ZIndex: =5
+
+                Button3_9 As button:
+                    DisplayMode: =Edit
+                    Fill: =RGBA(94, 90, 90, 1)
+                    Font: =Font.'Patrick Hand'
+                    Height: =47
+                    HoverFill: =RGBA(94, 90, 90, 1)
+                    OnSelect: =Navigate(EvaluarPaciente,ScreenTransition.Cover);Reset(TituloEvaluacionTextBox);Reset(DetalleEvaluacionTextbox)
+                    Size: =25
+                    Text: ="Evaluar"
+                    Width: =154
+                    X: =349
+                    Y: =110
+                    ZIndex: =6
+
+            Label10_1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Height: =123
+                Size: =30
+                Text: ="Por el momento no tiene pacientes asignados"
+                Visible: =If(IsEmpty(GalleryPacientes.AllItems),true,false)
+                Width: =560
+                X: =34
+                Y: =390
+                ZIndex: =7
+
+    Icon2_4 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(MenúEspecialistas,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =4
+

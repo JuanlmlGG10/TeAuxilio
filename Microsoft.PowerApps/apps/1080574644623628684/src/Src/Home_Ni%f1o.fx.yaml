@@ -1,0 +1,156 @@
+"Home_Niño As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+    Fill: =
+
+    Canvas1_4 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =
+        ZIndex: =3
+
+        DataCard1_4 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(153, 207, 236, 1)
+            Height: =Parent.Height
+            Width: =Parent.Width
+            WidthFit: =false
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label1_4 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =106
+                Size: =40
+                Text: ="Juegos Formativos"
+                Width: =349
+                X: =22
+                Y: =35
+                ZIndex: =1
+
+            Toggle1_4 As toggleSwitch:
+                Default: =true
+                FalseFill: =RGBA(255, 255, 255, 1)
+                HandleFill: =If(Toggle1_4.Value=true,RGBA(141, 198, 63, 1),RGBA(166, 166, 166, 1))
+                Height: =67
+                OnChange: =If(Toggle1_4.Value=true,true,Navigate(Home))
+                OnSelect: =Reset(Toggle1)
+                ShowLabel: =false
+                Size: =21
+                TrueFill: =RGBA(255, 255, 255, 1)
+                TrueText: ="Modo Niño"
+                Width: =116
+                X: =500
+                Y: =55
+                ZIndex: =2
+
+            Label2_4 As label:
+                Align: =Align.Center
+                Height: =38
+                Size: =15
+                Text: ="Modo Niño"
+                Width: =145
+                X: =490
+                Y: =125
+                ZIndex: =3
+
+            Rectangle1_4 As rectangle:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =80
+                Width: =640
+                Y: =1056
+                ZIndex: =5
+
+            Image1_1 As image:
+                Height: =80
+                Image: ='icono-juego'
+                Width: =80
+                X: =282
+                Y: =1056
+                ZIndex: =11
+
+            Rectangle10_3 As rectangle:
+                Fill: =RGBA(209, 209, 209, 1)
+                Height: =864
+                Width: =640
+                Y: =192
+                ZIndex: =12
+
+            Label1_5 As label:
+                Align: =Align.Center
+                Font: =Font.'Patrick Hand'
+                FontWeight: =FontWeight.Bold
+                Height: =55
+                Size: =25
+                Text: ="Tu Avatar"
+                Width: =207
+                X: =216
+                Y: =249
+                ZIndex: =13
+
+            Image3 As image:
+                Height: =320
+                Image: =First(LookUp(Personaje,ID=PersonajeUsuario).Attachments).Value
+                Width: =320
+                X: =160
+                Y: =317
+                ZIndex: =14
+
+            Button2 As button:
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(0, 0, 0, 0)
+                Font: =Font.'Patrick Hand'
+                Height: =70
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =
+                OnSelect: =Navigate(Home_Niño_Personaje,ScreenTransition.Cover);Reset(Toggle1_5)
+                PressedColor: =RGBA(0, 0, 0, 1)
+                PressedFill: =
+                Size: =25
+                Text: ="Personalizar Personaje"
+                Width: =330
+                X: =303
+                Y: =647
+                ZIndex: =16
+
+            Button2_1 As button:
+                Color: =RGBA(0, 0, 0, 0.79)
+                Fill: =RGBA(0, 0, 0, 0)
+                Font: =Font.'Patrick Hand'
+                Height: =69
+                HoverColor: =RGBA(0, 0, 0, 0.78)
+                HoverFill: =RGBA(0, 0, 0, 0)
+                OnSelect: =Navigate(Home_JuegoDeRoles,ScreenTransition.Cover);Set(EmailEspecialistaParaSeriousGames,LookUp(AsignacionUsuario,EmailPaciente=User().Email,EmailEspecialista))
+                PressedColor: =RGBA(0, 0, 0, 0.78)
+                PressedFill: =
+                Size: =25
+                Text: ="Juego de Roles"
+                Width: =186
+                X: =99
+                Y: =768
+                ZIndex: =17
+
+            Label1_6 As label:
+                Color: =RGBA(116, 116, 116, 1)
+                Font: =Font.'Patrick Hand'
+                FontWeight: =FontWeight.Bold
+                Height: =144
+                Size: =20
+                Text: ="Este juego consiste en actuar de la mejor forma posible ante las diferentes situaciones mostradas para ganar puntos. "
+                Width: =475
+                X: =99
+                Y: =821
+                ZIndex: =18
+
+            Image5 As image:
+                Height: =85
+                Image: ='juego-de-roles-icono'
+                Width: =82
+                X: =20
+                Y: =770
+                ZIndex: =19
+

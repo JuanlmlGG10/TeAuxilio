@@ -1,0 +1,148 @@
+"PublicarTestimonio As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    Canvas1_1 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =
+        ZIndex: =3
+
+        DataCard1_1 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(153, 207, 236, 1)
+            Height: =1136
+            Width: =Parent.Width
+            WidthFit: =false
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label1_1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Height: =106
+                Size: =40
+                Text: ="Comunidad"
+                Width: =349
+                X: =73
+                Y: =35
+                ZIndex: =1
+
+            Rectangle10 As rectangle:
+                Fill: =RGBA(166, 166, 166, 0.76)
+                Height: =813
+                Width: =640
+                Y: =193
+                ZIndex: =4
+
+            TituloTestimonioTextBox As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =70
+                HintText: ="Título"
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Size: =21
+                Width: =540
+                X: =50
+                Y: =230
+                ZIndex: =5
+
+            DescripcionTestimonioTextBox As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =503
+                HintText: ="Cuéntanos tu experiencia"
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =540
+                X: =50
+                Y: =359
+                ZIndex: =6
+
+            Button3 As button:
+                DisplayMode: =If(IsBlank(TituloTestimonioTextBox) Or IsBlank(DescripcionTestimonioTextBox),Disabled,Edit)
+                Fill: =RGBA(94, 90, 90, 1)
+                Height: =76
+                HoverFill: =RGBA(94, 90, 90, 1)
+                OnSelect: |-
+                    =Patch(Testimonio,Defaults(Testimonio),{Titulo:TituloTestimonioTextBox.Text,Descripcion:DescripcionTestimonioTextBox.Text,EmailPaciente:User().Email});Notify("Testimonio publicado correctamente",NotificationType.Success,5000);Navigate(Home,ScreenTransition.Cover)
+                Size: =24
+                Text: ="Publicar"
+                Width: =216
+                X: =374
+                Y: =900
+                ZIndex: =7
+
+            Rectangle1_1 As rectangle:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =80
+                Width: =640
+                Y: =1056
+                ZIndex: =9
+
+            Image3_1 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.CoverRight)
+                Width: =80
+                X: =28
+                Y: =1056
+                ZIndex: =10
+
+            Image4_1 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: |-
+                    =Navigate(Llamadas,ScreenTransition.Cover,{Pantalla:Home});Refresh(Videollamada)
+                Width: =80
+                X: =155
+                Y: =1056
+                ZIndex: =11
+
+            Image6_1 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =282
+                Y: =1056
+                ZIndex: =12
+
+            Image7_1 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =409
+                Y: =1056
+                ZIndex: =13
+
+            Image8_1 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =536
+                Y: =1056
+                ZIndex: =14
+
+            Icon4_1 As icon.BackArrow:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =70
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverColor: =RGBA(0, 0, 0, 1)
+                Icon: =Icon.BackArrow
+                OnSelect: =Navigate(Home,ScreenTransition.CoverRight);Reset(TestimoniosGallery)
+                Width: =56
+                X: =20
+                Y: =54
+                ZIndex: =15
+

@@ -1,0 +1,173 @@
+"AgregarContactoCercano As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_26 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_22 As label:
+        Height: =88
+        Size: =25
+        Text: ="Agregar Contacto"
+        Width: =506
+        X: =76
+        ZIndex: =2
+
+    Canvas2_26 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_26.Y + RectQuickActionBar1_26.Height
+        ZIndex: =3
+
+        DataCard2_26 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_24 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_31 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_24 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_29 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_25 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =Navigate(MenúPacientes,ScreenTransition.Cover)
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            NombreContactoCercanoTextBox As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =65
+                HintText: =""
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =115
+                ZIndex: =6
+
+            Label3_20 As label:
+                Height: =70
+                Size: =21
+                Text: ="Nombre"
+                Width: =560
+                X: =40
+                Y: =40
+                ZIndex: =7
+
+            Button3_32 As button:
+                DisplayMode: =If(IsBlank(NombreContactoCercanoTextBox) Or IsBlank(ApellidoContactoCercanoTextBox) Or IsBlank(CelularContactoCercanoTextBox) Or Len(CelularContactoCercanoTextBox)<>9 Or !IsNumeric(CelularContactoCercanoTextBox.Text),Disabled,Edit)
+                Fill: =RGBA(94, 90, 90, 1)
+                Height: =92
+                HoverFill: =RGBA(94, 90, 90, 1)
+                OnSelect: |-
+                    =Patch(ContactoCercano,Defaults(ContactoCercano),{Nombre:NombreContactoCercanoTextBox.Text,Apellido:ApellidoContactoCercanoTextBox.Text,Celular:Value(CelularContactoCercanoTextBox.Text),EmailPaciente:User().Email});Notify("Contacto guardado correctamente",NotificationType.Success,5000);Navigate(ContactosCercanos,ScreenTransition.Cover);Refresh(ContactoCercano)
+                Size: =24
+                Text: ="Agregar Contacto"
+                Width: =242
+                X: =193
+                Y: =695
+                ZIndex: =10
+
+            ApellidoContactoCercanoTextBox As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =65
+                HintText: =""
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =38
+                Y: =295
+                ZIndex: =11
+
+            Label3_21 As label:
+                Height: =70
+                Size: =21
+                Text: ="Apellido"
+                Width: =560
+                X: =40
+                Y: =220
+                ZIndex: =12
+
+            CelularContactoCercanoTextBox As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =65
+                HintText: ="Ingrese solo 9 dígitos"
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =42
+                Y: =488
+                ZIndex: =13
+
+            Label3_22 As label:
+                Height: =70
+                Size: =21
+                Text: ="Celular"
+                Width: =560
+                X: =40
+                Y: =413
+                ZIndex: =14
+
+    Icon2_24 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(ContactosCercanos,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =5
+

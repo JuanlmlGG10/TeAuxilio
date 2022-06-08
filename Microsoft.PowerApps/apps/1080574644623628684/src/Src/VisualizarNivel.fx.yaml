@@ -1,0 +1,236 @@
+"VisualizarNivel As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_23 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_28 As label:
+        Height: =88
+        Size: =27
+        Text: ="Niveles"
+        Width: =290
+        X: =76
+        ZIndex: =2
+
+    Canvas2_23 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_23.Y + RectQuickActionBar1_23.Height
+        ZIndex: =3
+
+        DataCard2_23 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            "PreguntasJuegoGallery As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Height: =951
+                Items: =Filter(PreguntaJuego,CorreoEspecialista=User().Email)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =Min(104, Self.Height - 60)
+                Width: =630
+                ZIndex: =1
+
+                Title10 As label:
+                    Height: =36
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =ThisItem.Pregunta
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =424
+                    Wrap: =false
+                    X: =32
+                    Y: =14
+                    ZIndex: =1
+
+                Subtitle11 As label:
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: |-
+                        ="Orden de aparición: " & ThisItem.OrdenAparicion
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =Title10.Y + Title10.Height + 4
+                    ZIndex: =2
+
+                Separator6 As rectangle:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    Fill: =RGBA(0, 0, 0, 1)
+                    Height: =1
+                    OnSelect: =
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =4
+
+                Button3_43 As button:
+                    DisplayMode: =Edit
+                    Fill: =RGBA(94, 90, 90, 1)
+                    Font: =Font.'Patrick Hand'
+                    Height: =32
+                    HoverFill: =RGBA(94, 90, 90, 1)
+                    OnSelect: =Navigate(VisualizarDetalleNivel,ScreenTransition.Cover)
+                    Size: =20
+                    Text: ="Ver Detalle"
+                    Visible: =If(UsuarioRol="Especialista",true,false)
+                    Width: =135
+                    X: =476
+                    Y: =14
+                    ZIndex: =5
+
+                Button3_44 As button:
+                    DisplayMode: =Edit
+                    Fill: =RGBA(94, 90, 90, 1)
+                    Font: =Font.'Patrick Hand'
+                    Height: =32
+                    HoverFill: =RGBA(94, 90, 90, 1)
+                    OnSelect: =Set(VisibleEliminarPregunta,true);Set(PreguntaSeleccionada,ThisItem)
+                    Size: =20
+                    Text: ="Eliminar"
+                    Visible: =If(UsuarioRol="Especialista",true,false)
+                    Width: =135
+                    X: =476
+                    Y: =54
+                    ZIndex: =6
+
+            Image3_21 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_28 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_21 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_26 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_22 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            Rectangle6_14 As rectangle:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(166, 166, 166, 1)
+                Height: =285
+                Visible: =VisibleEliminarPregunta
+                Width: =558
+                X: =35
+                Y: =293
+                ZIndex: =6
+
+            Label8_8 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                Height: =70
+                Size: =30
+                Text: ="¿Desea eliminar la pregunta seleccionada?"
+                Visible: =VisibleEliminarPregunta
+                Width: =560
+                X: =35
+                Y: =323
+                ZIndex: =7
+
+            Button5_21 As button:
+                Fill: =RGBA(116, 116, 116, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =72
+                HoverBorderColor: =
+                HoverFill: =
+                OnSelect: |-
+                    =Remove(
+                                    PreguntaJuego,
+                                    First(
+                                        Filter(
+                                            PreguntaJuego,
+                                            ID = PreguntaSeleccionada.ID)
+                                    )
+                    );
+                    Notify("Pregunta eliminada",NotificationType.Success,5000);
+                    Refresh(PreguntaJuego);
+                    Set(VisibleEliminarPregunta,false)                
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(116, 116, 116, 1)
+                Size: =25
+                Text: ="Sí"
+                Visible: =VisibleEliminarPregunta
+                Width: =214
+                X: =85
+                Y: =466
+                ZIndex: =8
+
+            Button5_22 As button:
+                Fill: =RGBA(116, 116, 116, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =72
+                HoverBorderColor: =
+                HoverFill: =
+                OnSelect: =Set(VisibleEliminarPregunta,false)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(116, 116, 116, 1)
+                Size: =25
+                Text: ="No"
+                Visible: =VisibleEliminarPregunta
+                Width: =214
+                X: =339
+                Y: =466
+                ZIndex: =9
+
+    Icon2_20 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(SeriousGames,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =4
+

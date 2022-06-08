@@ -1,0 +1,229 @@
+"MenúEspecialistas As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_9 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_10 As label:
+        Height: =88
+        Size: =27
+        Text: ="Menú"
+        Width: =290
+        X: =25
+        ZIndex: =2
+
+    Canvas2_9 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_9.Y + RectQuickActionBar1_9.Height
+        ZIndex: =3
+
+        DataCard2_9 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_7 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_10 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_7 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_8 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_8 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            Image10_1 As image:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                BorderThickness: =2
+                Height: =212
+                Image: =User().Image
+                Width: =196
+                X: =54
+                Y: =55
+                ZIndex: =6
+
+            Label7_1 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Height: =142
+                Size: =30
+                Text: =User().FullName
+                Width: =334
+                X: =274
+                Y: =89
+                ZIndex: =7
+
+            Button6_6 As button:
+                Align: =Align.Left
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =63
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                OnSelect: =Navigate(Pacientes,ScreenTransition.Cover);Refresh(AsignacionUsuario)
+                PressedColor: =RGBA(0, 0, 0, 1)
+                PressedFill: =RGBA(255, 255, 255, 1)
+                Size: =25
+                Text: ="Pacientes"
+                Width: =453
+                X: =54
+                Y: =376
+                ZIndex: =9
+
+            Button6_7 As button:
+                Align: =Align.Left
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =66
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                OnSelect: =Navigate(SolicitudPacientes,ScreenTransition.Cover);Set(VisibleAsignacionEspecialista,false);Refresh(AsignacionUsuario)
+                PressedColor: =RGBA(0, 0, 0, 1)
+                PressedFill: =RGBA(255, 255, 255, 1)
+                Size: =25
+                Text: ="Solicitud de Pacientes"
+                Width: =554
+                X: =54
+                Y: =500
+                ZIndex: =10
+
+            Button6_8 As button:
+                Align: =Align.Left
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =66
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                OnSelect: =Navigate(SeriousGames,ScreenTransition.Cover)
+                PressedColor: =RGBA(0, 0, 0, 1)
+                PressedFill: =RGBA(255, 255, 255, 1)
+                Size: =25
+                Text: ="Serious Games"
+                Width: =554
+                X: =54
+                Y: =624
+                ZIndex: =11
+
+            Button6_9 As button:
+                Align: =Align.Left
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =66
+                HoverColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                OnSelect: =Set(VisibleCerrarSesion,true)
+                PressedColor: =RGBA(0, 0, 0, 1)
+                PressedFill: =RGBA(255, 255, 255, 1)
+                Size: =25
+                Text: ="Cerrar Sesión"
+                Width: =554
+                X: =54
+                Y: =748
+                ZIndex: =12
+
+            Rectangle6_12 As rectangle:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(166, 166, 166, 1)
+                Height: =285
+                Visible: =VisibleCerrarSesion
+                Width: =558
+                X: =34
+                Y: =303
+                ZIndex: =13
+
+            Label8_7 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                Height: =70
+                Size: =30
+                Text: ="¿Desea cerrar sesión?"
+                Visible: =VisibleCerrarSesion
+                Width: =560
+                X: =34
+                Y: =353
+                ZIndex: =14
+
+            Button5_19 As button:
+                Fill: =RGBA(116, 116, 116, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =72
+                HoverBorderColor: =
+                HoverFill: =
+                OnSelect: =Exit()
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(116, 116, 116, 1)
+                Size: =25
+                Text: ="Sí"
+                Visible: =VisibleCerrarSesion
+                Width: =214
+                X: =84
+                Y: =476
+                ZIndex: =15
+
+            Button5_20 As button:
+                Fill: =RGBA(116, 116, 116, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =72
+                HoverBorderColor: =
+                HoverFill: =
+                OnSelect: =Set(VisibleCerrarSesion,false)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(116, 116, 116, 1)
+                Size: =25
+                Text: ="No"
+                Visible: =VisibleCerrarSesion
+                Width: =214
+                X: =338
+                Y: =476
+                ZIndex: =16
+

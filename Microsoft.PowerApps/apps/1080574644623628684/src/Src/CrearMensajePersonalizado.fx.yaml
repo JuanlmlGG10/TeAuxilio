@@ -1,0 +1,150 @@
+"CrearMensajePersonalizado As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_15 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_19 As label:
+        Height: =88
+        Size: =25
+        Text: ="Crear mensaje de auxilio"
+        Width: =506
+        X: =76
+        ZIndex: =2
+
+    Canvas2_15 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_15.Y + RectQuickActionBar1_15.Height
+        ZIndex: =3
+
+        DataCard2_15 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_13 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.CoverRight)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_18 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_13 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_18 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_14 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =Navigate(MenúPacientes,ScreenTransition.Cover)
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            TituloMensajePersonalizadoTextBox As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =65
+                HintText: |-
+                    ="Ejemplo: Apoyo de Amigos"
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =115
+                ZIndex: =6
+
+            Label3_5 As label:
+                Height: =70
+                Size: =21
+                Text: ="Título"
+                Width: =560
+                X: =42
+                Y: =40
+                ZIndex: =7
+
+            DescripcionMensajePersonalizadoTextBox As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =455
+                HintText: |-
+                    ="Ejemplo: Necesito de su ayuda por favor llámenme"
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =42
+                Y: =298
+                ZIndex: =8
+
+            Label3_6 As label:
+                Height: =70
+                Size: =21
+                Text: ="Descripción"
+                Width: =560
+                X: =44
+                Y: =223
+                ZIndex: =9
+
+            Button3_28 As button:
+                DisplayMode: =If(IsBlank(TituloMensajePersonalizadoTextBox) Or IsBlank(DescripcionMensajePersonalizadoTextBox),Disabled,Edit)
+                Fill: =RGBA(94, 90, 90, 1)
+                Height: =92
+                HoverFill: =RGBA(94, 90, 90, 1)
+                OnSelect: |-
+                    =Patch(MensajePersonalizado,Defaults(MensajePersonalizado),{Titulo:TituloMensajePersonalizadoTextBox.Text,Descripcion:DescripcionMensajePersonalizadoTextBox.Text,EmailPaciente:User().Email});Notify("Mensaje guardado correctamente",NotificationType.Success,5000);Navigate(MensajesPersonalizados,ScreenTransition.Cover)
+                Size: =24
+                Text: ="Guardar Mensaje"
+                Width: =242
+                X: =193
+                Y: =786
+                ZIndex: =10
+
+    Icon2_13 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(MensajesPersonalizados,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =5
+

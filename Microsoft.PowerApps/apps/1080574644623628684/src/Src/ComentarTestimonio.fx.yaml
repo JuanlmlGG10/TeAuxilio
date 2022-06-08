@@ -1,0 +1,226 @@
+"ComentarTestimonio As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    Canvas1_2 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =
+        ZIndex: =3
+
+        DataCard1_2 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(153, 207, 236, 1)
+            Height: =1136
+            Width: =Parent.Width
+            WidthFit: =false
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Label1_2 As label:
+                Align: =Align.Center
+                FontWeight: =FontWeight.Bold
+                Height: =106
+                Size: =40
+                Text: ="Comunidad"
+                Width: =339
+                X: =79
+                Y: =35
+                ZIndex: =1
+
+            Rectangle10_1 As rectangle:
+                Fill: =RGBA(166, 166, 166, 1)
+                Height: =813
+                Width: =640
+                Y: =193
+                ZIndex: =4
+
+            ComentarioTextBox As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =209
+                HintText: ="Escribe un comentario..."
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =675
+                ZIndex: =5
+
+            Button3_1 As button:
+                DisplayMode: =If(IsBlank(ComentarioTextBox),Disabled,Edit)
+                Fill: =RGBA(94, 90, 90, 1)
+                Height: =76
+                HoverFill: =RGBA(94, 90, 90, 1)
+                OnSelect: |-
+                    =Patch(Testimonio_Comentarios,Defaults(Testimonio_Comentarios),{Comentario:ComentarioTextBox.Text,ID_Testimonio:TestimoniosGallery.Selected.ID});Notify("Comentario enviado correctamente",NotificationType.Success,5000);Navigate(Home,ScreenTransition.Cover)
+                Size: =24
+                Text: ="Comentar"
+                Width: =216
+                X: =374
+                Y: =910
+                ZIndex: =6
+
+            Rectangle1_2 As rectangle:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(255, 255, 255, 1)
+                Height: =80
+                Width: =640
+                Y: =1056
+                ZIndex: =7
+
+            Image3_2 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.CoverRight)
+                Width: =80
+                X: =28
+                Y: =1056
+                ZIndex: =8
+
+            Image4_2 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =155
+                Y: =1056
+                ZIndex: =9
+
+            Image6_2 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =282
+                Y: =1056
+                ZIndex: =10
+
+            Image7_2 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =409
+                Y: =1056
+                ZIndex: =11
+
+            Image8_2 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =536
+                Y: =1056
+                ZIndex: =12
+
+            Label3_2 As label:
+                Color: =RGBA(255, 255, 255, 1)
+                Height: =70
+                Size: =21
+                Text: ="Comentario de apoyo"
+                Width: =560
+                X: =42
+                Y: =600
+                ZIndex: =13
+
+            Icon4_2 As icon.BackArrow:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =70
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverColor: =RGBA(0, 0, 0, 1)
+                Icon: =Icon.BackArrow
+                OnSelect: =Navigate(Home,ScreenTransition.CoverRight);Reset(TestimoniosGallery)
+                Width: =56
+                X: =23
+                Y: =52
+                ZIndex: =14
+
+            "ComentariosGallery As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver4.0'":
+                BorderColor: =RGBA(0, 0, 0, 1)
+                BorderThickness: =2
+                Height: =400
+                Items: =Filter(Testimonio_Comentarios,ID_Testimonio=TestimoniosGallery.Selected.ID)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =Min(200, Self.Height - 60)
+                Visible: =If(TestimoniosGallery.Selected.ID in Testimonio_Comentarios.ID_Testimonio,true,false)
+                Width: =630
+                X: =5
+                Y: =193
+                ZIndex: =15
+
+                Title2 As label:
+                    Color: =RGBA(255, 255, 255, 1)
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: |-
+                        ="Anónimo #"&ThisItem.ID
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =16
+                    ZIndex: =1
+
+                Subtitle2 As label:
+                    Color: =RGBA(255, 255, 255, 1)
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: ="Comentado el "&ThisItem.Created
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =54
+                    ZIndex: =2
+
+                Body2 As label:
+                    Color: =RGBA(255, 255, 255, 1)
+                    Height: =110
+                    OnSelect: =Select(Parent)
+                    Overflow: =Overflow.Scroll
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =ThisItem.Comentario
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =569
+                    X: =32
+                    Y: =90
+                    ZIndex: =3
+
+                Separator2 As rectangle:
+                    Fill: =RGBA(0, 0, 0, 1)
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =5
+
+            Label3 As label:
+                Align: =Align.Center
+                Color: =RGBA(255, 255, 255, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =153
+                Size: =30
+                Text: ="Por el momento no hay comentarios"
+                Visible: =If(TestimoniosGallery.Selected.ID in Testimonio_Comentarios.ID_Testimonio,false,true)
+                Width: =560
+                X: =40
+                Y: =363
+                ZIndex: =16
+

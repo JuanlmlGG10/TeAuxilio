@@ -1,0 +1,140 @@
+"AtencionDeAuxilio As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_38 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_46 As label:
+        Height: =88
+        Size: =25
+        Text: ="Contactarse con el paciente"
+        Width: =506
+        X: =25
+        ZIndex: =2
+
+    Canvas2_38 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_38.Y + RectQuickActionBar1_38.Height
+        ZIndex: =3
+
+        DataCard2_38 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            "AtencionAuxilioGallery As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                Height: =968
+                Items: =Filter(AsignacionUsuario,EmailEspecialista=User().Email)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =Min(104, Self.Height - 60)
+                ZIndex: =1
+
+                Title11_2 As label:
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =ThisItem.NombrePaciente
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =12
+                    ZIndex: =1
+
+                Subtitle8_2 As label:
+                    Height: =38
+                    OnSelect: =Select(Parent)
+                    Overflow: =Overflow.Scroll
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: |-
+                        ="Celular: "&ThisItem.CelularPaciente
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =61
+                    ZIndex: =2
+
+                Separator9_2 As rectangle:
+                    Fill: =RGBA(0, 0, 0, 1)
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =4
+
+                Button3_41 As button:
+                    DisplayMode: =Edit
+                    Fill: =RGBA(94, 90, 90, 1)
+                    Font: =Font.'Patrick Hand'
+                    Height: =35
+                    HoverFill: =RGBA(94, 90, 90, 1)
+                    OnSelect: |-
+                        =Launch("https://api.whatsapp.com/send?phone=(51)%20"&ThisItem.CelularPaciente)
+                    Size: =20
+                    Text: ="Enviar ayuda"
+                    Width: =139
+                    X: =470
+                    Y: =60
+                    ZIndex: =5
+
+            Image3_36 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_43 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_36 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_41 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_37 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+

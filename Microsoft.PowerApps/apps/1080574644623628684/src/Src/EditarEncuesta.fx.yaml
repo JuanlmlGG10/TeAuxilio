@@ -1,0 +1,192 @@
+"EditarEncuesta As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_39 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_47 As label:
+        Height: =88
+        Size: =25
+        Text: ="Editar Encuesta"
+        Width: =506
+        X: =76
+        ZIndex: =2
+
+    Canvas2_39 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_39.Y + RectQuickActionBar1_39.Height
+        ZIndex: =3
+
+        DataCard2_39 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_37 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.CoverRight)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_44 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_37 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_42 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_38 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            TituloEncuestaTextBox_4 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =EncuestasGallery.Selected.Titulo
+                Height: =85
+                HintText: =""
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =98
+                ZIndex: =6
+
+            Label3_63 As label:
+                Height: =70
+                Size: =21
+                Text: ="Título"
+                Width: =560
+                X: =42
+                Y: =23
+                ZIndex: =7
+
+            DescripcionEncuestaTextBox_4 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =EncuestasGallery.Selected.Descripcion
+                Height: =245
+                HintText: =""
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =281
+                ZIndex: =8
+
+            Label3_64 As label:
+                Height: =70
+                Size: =21
+                Text: ="Descripción"
+                Width: =560
+                X: =42
+                Y: =206
+                ZIndex: =9
+
+            Button3_42 As button:
+                DisplayMode: =If(IsBlank(TituloEncuestaTextBox_4) Or IsBlank(DescripcionEncuestaTextBox_4) Or IsBlank(EnlaceEncuestaTextBox_4),Disabled,Edit)
+                Fill: =RGBA(94, 90, 90, 1)
+                Height: =92
+                HoverFill: =RGBA(94, 90, 90, 1)
+                OnSelect: |-
+                    =Patch(
+                                    Encuesta,
+                                    First(
+                                        Filter(
+                                            Encuesta,
+                                            ID = EncuestasGallery.Selected.ID
+                                        )
+                                    ),
+                                    {Titulo: TituloEncuestaTextBox_4.Text},
+                                    {Descripcion:DescripcionEncuestaTextBox_4.Text},
+                                    {Enlace:EnlaceEncuestaTextBox_4.Text}
+                    );
+                    Notify(
+                        "Encuesta modificada correctamente",
+                        NotificationType.Success,
+                        5000
+                    );
+                    Navigate(
+                        Encuestas,
+                        ScreenTransition.Cover
+                    )
+                Size: =24
+                Text: ="Editar Encuesta"
+                Width: =242
+                X: =193
+                Y: =822
+                ZIndex: =10
+
+            Label3_65 As label:
+                Height: =70
+                Size: =21
+                Text: ="Enlace"
+                Width: =560
+                X: =42
+                Y: =540
+                ZIndex: =11
+
+            EnlaceEncuestaTextBox_4 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =EncuestasGallery.Selected.Enlace
+                Height: =135
+                HintText: =""
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =615
+                ZIndex: =12
+
+    Icon2_36 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(Encuestas,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =5
+

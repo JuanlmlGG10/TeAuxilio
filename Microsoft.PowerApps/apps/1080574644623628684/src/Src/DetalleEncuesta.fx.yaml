@@ -1,0 +1,152 @@
+"DetalleEncuesta As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_37 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_45 As label:
+        Height: =88
+        Size: =25
+        Text: ="Detalle Encuesta"
+        Width: =459
+        X: =76
+        ZIndex: =2
+
+    Canvas2_37 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_37.Y + RectQuickActionBar1_37.Height
+        ZIndex: =3
+
+        DataCard2_37 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_35 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_42 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_35 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_40 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_36 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            TituloEvaluacionTextBox_3 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =EncuestasGallery.Selected.Titulo
+                DisplayMode: =DisplayMode.Disabled
+                Height: =65
+                HintText: =""
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =101
+                ZIndex: =6
+
+            Label3_59 As label:
+                Height: =48
+                Size: =21
+                Text: ="Título"
+                Width: =560
+                X: =40
+                Y: =41
+                ZIndex: =7
+
+            DetalleEvaluacionTextbox_4 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =EncuestasGallery.Selected.Descripcion
+                DisplayMode: =DisplayMode.Disabled
+                Height: =404
+                HintText: =""
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =250
+                ZIndex: =8
+
+            Label3_60 As label:
+                Height: =48
+                Size: =21
+                Text: ="Detalle de evaluación"
+                Width: =560
+                X: =40
+                Y: =183
+                ZIndex: =9
+
+            Button3_39 As button:
+                DisplayMode: =Edit
+                Fill: =RGBA(94, 90, 90, 1)
+                Font: =Font.'Patrick Hand'
+                Height: =92
+                HoverFill: =RGBA(94, 90, 90, 1)
+                OnSelect: =Launch(EncuestasGallery.Selected.Enlace)
+                Size: =25
+                Text: ="Ir a la encuesta"
+                Width: =144
+                X: =248
+                Y: =765
+                ZIndex: =11
+
+    Icon2_33 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(Encuestas,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =5
+

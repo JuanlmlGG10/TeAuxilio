@@ -1,0 +1,247 @@
+"ContactosCercanos As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_25 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_30 As label:
+        Height: =88
+        Size: =25
+        Text: ="Mis Contactos Cercanos"
+        Width: =506
+        X: =76
+        ZIndex: =2
+
+    Canvas2_25 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_25.Y + RectQuickActionBar1_25.Height
+        ZIndex: =3
+
+        DataCard2_25 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            "ContactoCercanoGallery_3 As gallery.'BrowseLayout_Vertical_TwoTextVariant_ver4.0'":
+                Height: =968
+                Items: =Filter(ContactoCercano,EmailPaciente=User().Email)
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =Min(104, Self.Height - 60)
+                ZIndex: =1
+
+                Title11_1 As label:
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =ThisItem.Nombre&" "&ThisItem.Apellido
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =16
+                    ZIndex: =1
+
+                Subtitle8_1 As label:
+                    Height: =38
+                    OnSelect: =Select(Parent)
+                    Overflow: =Overflow.Scroll
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: |-
+                        ="Celular: "&ThisItem.Celular
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =61
+                    ZIndex: =2
+
+                Separator9_1 As rectangle:
+                    Fill: =RGBA(0, 0, 0, 1)
+                    Height: =1
+                    OnSelect: =Select(Parent)
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =4
+
+                NextArrow9_1 As icon.ChevronRight:
+                    AccessibleLabel: =Self.Tooltip
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    Color: =RGBA(0, 0, 0, 1)
+                    Height: =60
+                    Icon: =Icon.Trash
+                    OnSelect: =Set(VisibleEliminarContacto,true)
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    TabIndex: =0
+                    Tooltip: ="Ver los detalles del elemento"
+                    Width: =65
+                    X: =552
+                    Y: =22
+                    ZIndex: =5
+
+            Image3_23 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_30 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_23 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_28 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_24 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =Navigate(MenúPacientes,ScreenTransition.Cover)
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            LblAppName1_31 As label:
+                Align: =Align.Center
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =168
+                Size: =27
+                Text: ="Todavía no tiene guardado un contacto cercano, agréguelo seleccionando el botón +"
+                Visible: =If(User().Email in ContactoCercano.EmailPaciente,false,true)
+                Width: =568
+                X: =40
+                Y: =40
+                ZIndex: =6
+
+            Rectangle6_11 As rectangle:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(166, 166, 166, 1)
+                Height: =308
+                Visible: =VisibleEliminarContacto
+                Width: =558
+                X: =40
+                Y: =276
+                ZIndex: =7
+
+            Label8_6 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                Height: =210
+                Size: =30
+                Text: ="¿Segura que quiere eliminar este contacto?"
+                Visible: =VisibleEliminarContacto
+                Width: =560
+                X: =48
+                Y: =300
+                ZIndex: =8
+
+            Button5_17 As button:
+                Fill: =RGBA(116, 116, 116, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =72
+                HoverBorderColor: =
+                HoverFill: =
+                OnSelect: |-
+                    =Remove(
+                                    ContactoCercano,
+                                    First(
+                                        Filter(
+                                            ContactoCercano,
+                                            ID = ContactoCercanoGallery_3.Selected.ID
+                                        )
+                                    )
+                    )                
+                    ;
+                    Notify("Contacto eliminado correctamente",NotificationType.Success,5000)
+                    ;
+                    Set(
+                        VisibleEliminarContacto,
+                        false
+                    );
+                    Refresh(ContactoCercano)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(116, 116, 116, 1)
+                Size: =25
+                Text: ="Sí"
+                Visible: =VisibleEliminarContacto
+                Width: =214
+                X: =80
+                Y: =468
+                ZIndex: =9
+
+            Button5_18 As button:
+                Fill: =RGBA(116, 116, 116, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =72
+                HoverBorderColor: =
+                HoverFill: =
+                OnSelect: =Set(VisibleEliminarContacto,false)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(116, 116, 116, 1)
+                Size: =25
+                Text: ="No"
+                Visible: =VisibleEliminarContacto
+                Width: =214
+                X: =356
+                Y: =468
+                ZIndex: =10
+
+    Icon2_23 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(MenúPacientes,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =5
+
+    Icon2_14 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Icon: =Icon.Add
+        OnSelect: =Navigate(AgregarContactoCercano,ScreenTransition.Cover);Refresh(ContactoCercano);Reset(NombreContactoCercanoTextBox);Reset(ApellidoContactoCercanoTextBox);Reset(CelularContactoCercanoTextBox)
+        X: =556
+        Y: =12
+        ZIndex: =6
+

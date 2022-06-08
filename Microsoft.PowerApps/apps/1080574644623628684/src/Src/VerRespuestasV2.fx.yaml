@@ -1,0 +1,205 @@
+"VerRespuestasV2 As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_29 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_36 As label:
+        Height: =88
+        Size: =27
+        Text: ="Respuestas"
+        Width: =290
+        X: =76
+        ZIndex: =2
+
+    Canvas2_29 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_29.Y + RectQuickActionBar1_29.Height
+        ZIndex: =3
+
+        DataCard2_29 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =648
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_27 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_34 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_27 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_32 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_28 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            Rectangle12 As rectangle:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Fill: =RGBA(0, 0, 0, 1)
+                Height: =2
+                Width: =Parent.Width
+                Y: =
+                ZIndex: =6
+
+            "RespuestasGallery_1 As gallery.'BrowseLayout_Vertical_ThreeTextVariant_ver4.0'":
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Height: =949
+                Items: |
+                    =SortByColumns(
+                        Filter(
+                            IntentosJuego,
+                            EmailEspecialista = User().Email
+                    
+                        ),
+                        "Created",
+                        Descending
+                    )
+                Layout: =Layout.Vertical
+                TemplatePadding: =0
+                TemplateSize: =Min(168, Self.Height - 60)
+                Width: =630
+                Y: =2
+                ZIndex: =9
+
+                Title13_1 As label:
+                    AutoHeight: =true
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: =ThisItem.NombreUsuario
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =16
+                    ZIndex: =1
+
+                Subtitle10_1 As label:
+                    Height: =Self.Size * 1.8
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: |-
+                        ="Porcentaje de aprendizaje: "&
+                        If(
+                        Last(Filter(Juego,IDIntentoJuego=ThisItem.ID)).NumPregunta=1,"0%",
+                        If(
+                        Last(Filter(Juego,IDIntentoJuego=ThisItem.ID)).NumPregunta=2,"20%",
+                        If(
+                        Last(Filter(Juego,IDIntentoJuego=ThisItem.ID)).NumPregunta=3,"40%",
+                        If(
+                        Last(Filter(Juego,IDIntentoJuego=ThisItem.ID)).NumPregunta=4,"60%",
+                        If(
+                        Last(Filter(Juego,IDIntentoJuego=ThisItem.ID)).NumPregunta=5 && 
+                        Last(Filter(Juego,IDIntentoJuego=ThisItem.ID)).Respuesta<>Last(Filter(Juego,IDIntentoJuego=ThisItem.ID)).RespuestaMarcada,"80%","100%"
+                        )
+                        )
+                        )
+                        )
+                        )
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =Title13_1.Y + Title13_1.Height + 2
+                    ZIndex: =2
+
+                Body4_2 As label:
+                    Height: =Self.Size * 4
+                    OnSelect: =Select(Parent)
+                    PaddingBottom: =0
+                    PaddingLeft: =0
+                    PaddingRight: =0
+                    PaddingTop: =0
+                    Text: |-
+                        ="Intento realizado el día: "&ThisItem.Created
+                    VerticalAlign: =VerticalAlign.Top
+                    Width: =Parent.TemplateWidth - 104
+                    X: =32
+                    Y: =Subtitle10_1.Y + Subtitle10_1.Height + 4
+                    ZIndex: =3
+
+                NextArrow1_1 As icon.ChevronRight:
+                    AccessibleLabel: =Self.Tooltip
+                    Height: =60
+                    Icon: =Icon.ChevronRight
+                    OnSelect: |-
+                        =Navigate(VerRespuestasDetalleNivel1,ScreenTransition.Cover,{IDIntento:ThisItem.ID,IntentoNivel:1})
+                    PaddingBottom: =10
+                    PaddingLeft: =10
+                    PaddingRight: =10
+                    PaddingTop: =10
+                    TabIndex: =0
+                    Tooltip: ="Ver los detalles del elemento"
+                    Width: =60
+                    X: =Parent.TemplateWidth - Self.Width - 5
+                    Y: =(Parent.TemplateHeight / 2) - (Self.Height / 2)
+                    ZIndex: =4
+
+                Separator11_1 As rectangle:
+                    BorderColor: =RGBA(0, 0, 0, 1)
+                    Fill: =RGBA(0, 0, 0, 1)
+                    Height: =1
+                    OnSelect: =
+                    Width: =Parent.TemplateWidth
+                    Y: =Parent.TemplateHeight - 1
+                    ZIndex: =5
+
+    Icon2_26 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(SeriousGames,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =4
+

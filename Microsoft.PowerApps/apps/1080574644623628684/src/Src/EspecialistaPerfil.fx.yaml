@@ -1,0 +1,212 @@
+"EspecialistaPerfil As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_13 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_15 As label:
+        Height: =88
+        Size: =27
+        Text: ="Perfil"
+        Width: =290
+        X: =76
+        ZIndex: =2
+
+    Canvas2_13 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_13.Y + RectQuickActionBar1_13.Height
+        ZIndex: =3
+
+        DataCard2_13 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_11 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_14 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: |-
+                    =Navigate(Llamadas,ScreenTransition.Cover,{Pantalla:Home});Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_11 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_16 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_12 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =Navigate(MenúPacientes,ScreenTransition.Cover)
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            LblAppName1_16 As label:
+                Align: =Align.Center
+                Color: =RGBA(0, 0, 0, 1)
+                Height: =168
+                Size: =27
+                Text: ="Todavía no tiene un especialista asignado, solicítelo seleccionando el botón +"
+                Visible: =If(User().Email in AsignacionUsuario.EmailPaciente,false,true)
+                Width: =568
+                X: =40
+                Y: =30
+                ZIndex: =6
+
+            Rectangle6_9 As rectangle:
+                BorderColor: =RGBA(255, 255, 255, 1)
+                Fill: =RGBA(166, 166, 166, 1)
+                Height: =285
+                Visible: =VisibleAsignacionEspecialista
+                Width: =558
+                X: =48
+                Y: =42
+                ZIndex: =7
+
+            Label8_4 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                Height: =70
+                Size: =30
+                Text: ="¿Desea solicitar un especialista?"
+                Visible: =VisibleAsignacionEspecialista
+                Width: =560
+                X: =48
+                Y: =66
+                ZIndex: =8
+
+            Button5_13 As button:
+                Fill: =RGBA(116, 116, 116, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =72
+                HoverBorderColor: =
+                HoverFill: =
+                OnSelect: |-
+                    =Patch(AsignacionUsuario,Defaults(AsignacionUsuario),{EmailPaciente:User().Email});Notify("Solicitud realizada",NotificationType.Success,5000);Set(VisibleAsignacionEspecialista,false)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(116, 116, 116, 1)
+                Size: =25
+                Text: ="Sí"
+                Visible: =VisibleAsignacionEspecialista
+                Width: =214
+                X: =98
+                Y: =215
+                ZIndex: =9
+
+            Button5_14 As button:
+                Fill: =RGBA(116, 116, 116, 1)
+                FontWeight: =FontWeight.Bold
+                Height: =72
+                HoverBorderColor: =
+                HoverFill: =
+                OnSelect: =Set(VisibleAsignacionEspecialista,false)
+                PressedColor: =RGBA(255, 255, 255, 1)
+                PressedFill: =RGBA(116, 116, 116, 1)
+                Size: =25
+                Text: ="No"
+                Visible: =VisibleAsignacionEspecialista
+                Width: =214
+                X: =352
+                Y: =215
+                ZIndex: =10
+
+            Image10_3 As image:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                BorderThickness: =2
+                Height: =261
+                Image: =UsuariosdeOffice365.UserPhoto(EspecialistaCorreo)
+                Width: =242
+                X: =207
+                Y: =120
+                ZIndex: =11
+
+            Label9_2 As label:
+                Align: =Align.Center
+                AutoHeight: =true
+                FontWeight: =FontWeight.Bold
+                Height: =70
+                Size: =30
+                Text: =LookUp(AsignacionUsuario,EmailPaciente=User().Email,NombreEspecialista)
+                Width: =560
+                X: =48
+                Y: =458
+                ZIndex: =12
+
+            Label9_3 As label:
+                FontWeight: =FontWeight.Bold
+                Height: =80
+                Size: =20
+                Text: |-
+                    ="Número de pacientes: "
+                Width: =437
+                X: =20
+                Y: =664
+                ZIndex: =13
+
+            TextInput1 As text:
+                Default: =CountIf(AsignacionUsuario,EspecialistaCorreo=EspecialistaCorreo)
+                DisplayMode: =DisplayMode.Disabled
+                Height: =70
+                Size: =21
+                Width: =560
+                X: =20
+                Y: =732
+                ZIndex: =14
+
+    Icon2_8 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Icon: =Icon.Add
+        OnSelect: =Set(VisibleAsignacionEspecialista,true)
+        Visible: =If(User().Email in AsignacionUsuario.EmailPaciente,false,true)
+        X: =556
+        Y: =12
+        ZIndex: =4
+
+    Icon2_9 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(MiEspecialista,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =5
+

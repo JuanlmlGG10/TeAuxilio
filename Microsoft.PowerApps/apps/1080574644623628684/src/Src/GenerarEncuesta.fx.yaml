@@ -1,0 +1,193 @@
+"GenerarEncuesta As screen.'phoneLayout_FluidGridWithHeaderPageLayout_ver3.0'":
+
+    RectQuickActionBar1_35 As rectangle:
+        Fill: =RGBA(166, 166, 166, 1)
+        Height: =88
+        Width: =Parent.Width
+        ZIndex: =1
+
+    LblAppName1_42 As label:
+        Height: =88
+        Size: =25
+        Text: ="Enviar Encuesta"
+        Width: =506
+        X: =76
+        ZIndex: =2
+
+    Canvas2_35 As fluidGrid.fluidGridWithBlankCard:
+        BorderThickness: =0
+        Height: =Parent.Height - Self.Y
+        Width: =Parent.Width
+        Y: =RectQuickActionBar1_35.Y + RectQuickActionBar1_35.Height
+        ZIndex: =3
+
+        DataCard2_35 As dataCard:
+            BorderColor: =RGBA(0, 0, 0, 1)
+            BorderStyle: =BorderStyle.Solid
+            BorderThickness: =0
+            DisplayMode: =DisplayMode.Edit
+            Fill: =RGBA(0, 0, 0, 0)
+            Height: =1048
+            Width: =Parent.Width
+            X: =0
+            Y: =0
+            ZIndex: =1
+
+            Image3_33 As image:
+                Height: =80
+                Image: ='icono-comunidad'
+                OnSelect: =Navigate(Home,ScreenTransition.Cover);Refresh(Testimonio)
+                Width: =80
+                X: =20
+                Y: =968
+                ZIndex: =1
+
+            Image4_40 As image:
+                Height: =80
+                Image: ='llamada-icono'
+                OnSelect: =Navigate(Llamadas,ScreenTransition.Cover);Refresh(Videollamada)
+                Width: =80
+                X: =147
+                Y: =968
+                ZIndex: =2
+
+            Image6_33 As image:
+                Height: =80
+                Image: ='icono-auxilio'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(SolicitudDeAuxilio,ScreenTransition.Cover);Set(MensajeDeAuxilio,LookUp(MensajePersonalizado,EmailPaciente=User().Email,Descripcion)),Navigate(AtencionDeAuxilio,ScreenTransition.Cover));Refresh(ContactoCercano);Refresh(AsignacionUsuario)
+                Width: =80
+                X: =274
+                Y: =968
+                ZIndex: =3
+
+            Image7_38 As image:
+                Height: =80
+                Image: ='encuesta-icono'
+                OnSelect: =Navigate(Encuestas,ScreenTransition.Cover);Refresh(Encuesta)
+                Width: =80
+                X: =401
+                Y: =968
+                ZIndex: =4
+
+            Image8_34 As image:
+                Height: =80
+                Image: ='menu-icono'
+                OnSelect: =If(UsuarioRol="Paciente",Navigate(MenúPacientes,ScreenTransition.Cover),Navigate(MenúEspecialistas,ScreenTransition.Cover))
+                Width: =80
+                X: =528
+                Y: =968
+                ZIndex: =5
+
+            TituloEncuestaTextBox_3 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =85
+                HintText: |-
+                    ="Ejemplo: Identificación de mujeres con casos repetitivos de violencia"
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =98
+                ZIndex: =6
+
+            Label3_56 As label:
+                Height: =70
+                Size: =21
+                Text: ="Título"
+                Width: =560
+                X: =42
+                Y: =23
+                ZIndex: =7
+
+            DescripcionEncuestaTextBox_3 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =245
+                HintText: |-
+                    ="Ejemplo: Esta encuesta es para saber cuántas mujeres siguen sufriendo por violencia familiar"
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =281
+                ZIndex: =8
+
+            Label3_57 As label:
+                Height: =70
+                Size: =21
+                Text: ="Descripción"
+                Width: =560
+                X: =42
+                Y: =206
+                ZIndex: =9
+
+            Button3_37 As button:
+                DisplayMode: =If(IsBlank(TituloEncuestaTextBox_3) Or IsBlank(DescripcionEncuestaTextBox_3) Or IsBlank(EnlaceEncuestaTextBox_3),Disabled,Edit)
+                Fill: =RGBA(94, 90, 90, 1)
+                Height: =92
+                HoverFill: =RGBA(94, 90, 90, 1)
+                OnSelect: |-
+                    =Patch(
+                        Encuesta,
+                        Defaults(Encuesta),
+                        {
+                            Titulo: TituloEncuestaTextBox_3.Text,
+                            Descripcion: DescripcionEncuestaTextBox_3.Text,
+                            Enlace:EnlaceEncuestaTextBox_3.Text,
+                            EmailEspecialista: User().Email
+                        }
+                    );
+                    Notify(
+                        "Encuesta enviada correctamente",
+                        NotificationType.Success,
+                        5000
+                    );
+                    Navigate(
+                        Encuestas,
+                        ScreenTransition.Cover
+                    )
+                Size: =24
+                Text: ="Enviar Encuesta"
+                Width: =242
+                X: =193
+                Y: =822
+                ZIndex: =10
+
+            Label3_58 As label:
+                Height: =70
+                Size: =21
+                Text: ="Enlace"
+                Width: =560
+                X: =42
+                Y: =540
+                ZIndex: =11
+
+            EnlaceEncuestaTextBox_3 As text:
+                BorderColor: =RGBA(0, 0, 0, 1)
+                Default: =""
+                Height: =135
+                HintText: ="Recuerde subir enlace de Microsoft Forms"
+                HoverBorderColor: =RGBA(0, 0, 0, 1)
+                HoverFill: =RGBA(255, 255, 255, 1)
+                Mode: =TextMode.MultiLine
+                Size: =21
+                Width: =560
+                X: =40
+                Y: =615
+                ZIndex: =12
+
+    Icon2_32 As icon.Add:
+        Color: =RGBA(255, 255, 255, 1)
+        Height: =50
+        Icon: =Icon.BackArrow
+        OnSelect: =Navigate(Encuestas,ScreenTransition.CoverRight)
+        Width: =40
+        X: =20
+        Y: =20
+        ZIndex: =5
+

@@ -1,0 +1,138 @@
+{
+  "0dc75487-75a7-4303-93aa-10f4bfe97e70": {
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Office\u00A0365 Outlook",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1566/1.0.1566.2741/office365/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "Office365Outlook"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "0dc75487-75a7-4303-93aa-10f4bfe97e70"
+  },
+  "15763e7f-8815-435b-b998-962786b65b0e": {
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Power Apps para creadores",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1551/1.0.1551.2693/powerappsforappmakers/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_powerappsforappmakers",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "PowerAppsparacreadores"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "15763e7f-8815-435b-b998-962786b65b0e"
+  },
+  "170a7089-4834-442e-aefe-49e9d222e134": {
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "SharePoint",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1563/1.0.1563.2732/sharepointonline/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_sharepointonline",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {
+      "https://upcedupe.sharepoint.com/EISC/Talleres/PRY2021215": {
+        "dataSources": {
+          "AsignacionUsuario": {
+            "tableName": "e8a01ad1-835b-44f9-96f4-91306a951a04"
+          },
+          "ContactoCercano": {
+            "tableName": "12cd2401-eec6-4e55-bd62-6ff82af822ae"
+          },
+          "Encuesta": {
+            "tableName": "340e476d-8091-4b3f-896c-3320d8be1b41"
+          },
+          "Evaluacion": {
+            "tableName": "3dbe8a3a-4b56-45ae-bff0-fe2fccc5c775"
+          },
+          "IntentosJuego": {
+            "tableName": "b4c408db-f57f-4881-b0d4-2762f65920be"
+          },
+          "Juego": {
+            "tableName": "1a54ab58-75e0-486d-823c-e8b2b7d9c93b"
+          },
+          "MensajePersonalizado": {
+            "tableName": "0b1b5cf6-942b-43a6-ba5b-3923db6ee8d7"
+          },
+          "Personaje": {
+            "tableName": "68730ec3-7272-49a4-aa02-f22e0c1d351b"
+          },
+          "PreguntaJuego": {
+            "tableName": "03f6269a-8a36-4378-bcc1-9d15bda7fef4"
+          },
+          "Testimonio": {
+            "tableName": "099d692d-bf21-4eeb-8714-0023066a0274"
+          },
+          "Testimonio_Comentarios": {
+            "tableName": "14b49a75-3828-4ac0-a1fa-fc8078fc516c"
+          },
+          "Usuario": {
+            "tableName": "5ba49fc8-e47a-4764-8f91-438d02a0abc9"
+          },
+          "Videollamada": {
+            "tableName": "1b1d852f-6c8c-4e23-aea9-f27d8a01ef26"
+          }
+        }
+      }
+    },
+    "dataSources": [
+      "Testimonio",
+      "Testimonio_Comentarios",
+      "Videollamada",
+      "Personaje",
+      "Usuario",
+      "PreguntaJuego",
+      "AsignacionUsuario",
+      "MensajePersonalizado",
+      "Evaluacion",
+      "ContactoCercano",
+      "Juego",
+      "IntentosJuego",
+      "Encuesta"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "170a7089-4834-442e-aefe-49e9d222e134"
+  },
+  "f867755c-0163-4ce7-bba6-287c4b14aa0a": {
+    "connectionParameters": {
+      "sku": "Enterprise"
+    },
+    "connectionRef": {
+      "apiTier": "Standard",
+      "displayName": "Usuarios de Office 365",
+      "iconUri": "https://connectoricons-prod.azureedge.net/releases/v1.0.1563/1.0.1563.2732/office365users/icon.png",
+      "id": "/providers/microsoft.powerapps/apis/shared_office365users",
+      "parameterHints": {},
+      "parameterHintsV2": {}
+    },
+    "datasets": {},
+    "dataSources": [
+      "UsuariosdeOffice365"
+    ],
+    "dependencies": {},
+    "dependents": [],
+    "id": "f867755c-0163-4ce7-bba6-287c4b14aa0a"
+  }
+}
